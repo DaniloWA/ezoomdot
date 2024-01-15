@@ -18,6 +18,6 @@ Route::group(
     ['middleware' => ['auth:sanctum']],
     function () {
         Route::post('/auth/logout', [ApiAuthController::class, 'logout']);
-        Route::get('/auth/me', [ApiAuthController::class, 'me']);
+        Route::get('/auth/user', [ApiAuthController::class, 'currentUser']);
     }
 );

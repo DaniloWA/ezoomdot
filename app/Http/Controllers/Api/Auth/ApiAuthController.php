@@ -57,8 +57,7 @@ class ApiAuthController extends Controller
         return $this->successResponse([], 'Tokens Revoked');
     }
 
-    //TODO!! alterar nomeclatura para userInfo
-    public function me()
+    public function currentUser()
     {
         return $this->successResponse(auth()->user());
     }
