@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
+class CreateTasksTable extends Migration
 {
+    //TODO! Adicionar equipes de tarefas
     /**
      * Run the migrations.
      */
@@ -13,7 +14,22 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->string('title', 150);
+            $table->string('slug', 150)->index();
+            $table->text('description')->nullable();
+            $table->enum('status', ['pending', 'completed', 'canceled'])
+                ->default('pending');
+            $table->enum('priority', ['low', 'medium', 'high', 'critical'])
+                ->default('low');
+            $table->timestamp('deadline')
+                ->default(now()->addDays(5))
+                ->comment('The date and time by which the task should be completed. Default is 5 days from now.');
+
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -24,4 +40,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('tasks');
     }
-};
+}
