@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->string('title', 150);
+            $table->string('title', 150);;
             $table->string('slug', 150)->index();
             $table->text('description')->nullable();
             $table->enum('status', ['pending', 'completed', 'canceled'])
