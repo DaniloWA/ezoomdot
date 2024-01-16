@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->string('title', 150);;
+            $table->string('title', 150);
             $table->string('slug', 150)->index();
             $table->text('description')->nullable();
             $table->enum('status', ['pending', 'completed', 'canceled'])
@@ -28,6 +28,7 @@ class CreateTasksTable extends Migration
                 ->comment('The date and time by which the task should be completed. Default is 5 days from now.');
 
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
