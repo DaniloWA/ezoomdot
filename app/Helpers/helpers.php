@@ -25,8 +25,7 @@ if (!function_exists('getNewToken')) {
     function getNewToken(Request $request)
     {
         $yearInMinutes = 525600;
-        $user = $request->user();
-        $token = $request->user()->createToken($user->email, ['*'], now()->addMinutes($yearInMinutes))->plainTextToken;
+        $token = $request->user()->createToken("default_token", ['*'], now()->addMinutes($yearInMinutes))->plainTextToken;
 
         if (!session()->has('api_token')) {
             session(['api_token' => $token]);
