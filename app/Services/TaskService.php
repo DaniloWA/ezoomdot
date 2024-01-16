@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Task;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -33,19 +34,35 @@ class TaskService
 
         foreach ($filterMap as $filterKey => $dbColumn) {
             if (isset($filters[$filterKey])) {
-                $query->where($dbColumn, $filters[$filterKey]);
+                if ($filterKey === 'user') {
+                    $query->whereHas('user', function ($query) use ($filters, $filterKey) {
+                        $query->where('uuid', $filters[$filterKey]);
+                    });
+                } else {
+                    $query->where($dbColumn, $filters[$filterKey]);
+                }
             }
         }
 
         if (isset($filters['deadline_start']) && isset($filters['deadline_end'])) {
             $query->whereBetween('deadline', [
-                $filters['deadline_start'],
-                $filters['deadline_end'] . Carbon::now()->endOfDay()->toDateTimeString(),
+                Carbon::parse($filters['deadline_start'])->startOfDay(),
+                Carbon::parse($filters['deadline_end'])->endOfDay(),
             ]);
         }
 
         return $query;
     }
+
+    public function getUsers()
+    {
+        $users = User::whereHas('tasks')
+            ->select('uuid', 'name', 'email')
+            ->get();
+
+        return $users ?? [];
+    }
+
 
     /**
      * Retrieves a paginated list of tasks based on specified filters.
