@@ -12,7 +12,7 @@ class ApiResponse extends JsonResource
     protected null|string $message;
     protected int $statusCode;
 
-    public function __construct($resource, string $status = "Success", null|string $message = 'Operation successful', int $statusCode = 200)
+    public function __construct($resource = [], string $status = "Success", null|string $message = 'Operation successful', int $statusCode = 200)
     {
         if (!in_array($status, ["Success", "Error"])) {
             throw new InvalidApiStatusException();
@@ -28,9 +28,9 @@ class ApiResponse extends JsonResource
     {
         return [
             'status' => $this->status,
-            'statusCode' => $this->statusCode,
+            'status_code' => $this->statusCode,
             'message' => $this->message,
-            'data' => $this->resource ?? [],
+            'data' => $this->resource,
         ];
     }
 
@@ -39,7 +39,7 @@ class ApiResponse extends JsonResource
         $response->header('Content-Type', 'application/json');
         $response->header('Access-Control-Allow-Origin', '*');
         $response->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-        $response->header('X-User-Authenticated', auth::check());
+        $response->header('X-User-Authenticated', auth::check() ? 1 : 0);
         $response->setStatusCode($this->statusCode);
         return;
     }
