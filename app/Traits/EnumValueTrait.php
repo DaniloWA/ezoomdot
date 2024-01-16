@@ -21,4 +21,29 @@ trait EnumValueTrait
 
         throw new \ValueError("$value is not a valid value for " . static::class);
     }
+
+
+    /**
+     * Retrieves an array of values from the cases.
+     *
+     * @return array An array of values.
+     */
+    public static function getValues(): array
+    {
+        return array_map(function ($case) {
+            return $case->value;
+        }, self::cases());
+    }
+
+    /**
+     * Retrieves an array of names.
+     *
+     * @return array
+     */
+    public static function getNames(): array
+    {
+        return array_map(function ($case) {
+            return $case->name;
+        }, self::cases());
+    }
 }
