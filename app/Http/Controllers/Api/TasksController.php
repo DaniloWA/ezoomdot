@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\TasksFiltersEnum;
+use App\Enums\TasksStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\TaskUpdateRequest;
@@ -17,6 +19,8 @@ class TasksController extends Controller
     protected $task;
     protected $service;
 
+
+
     public function __construct(Task $task, TaskService $service)
     {
         $this->task = $task;
@@ -28,8 +32,7 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
-        //TODO!! Implementar fillters para constants
-        $allowedFilters = ['user', 'status', 'priority', 'deadline_start', 'deadline_end'];
+        $allowedFilters = TasksFiltersEnum::getValues();
 
         $filters = $request->only($allowedFilters);
 
@@ -49,7 +52,15 @@ class TasksController extends Controller
     {
         $userID = $request->user()->id;
 
-        $mergeRequest = $request->merge(['user_id' => $userID]);
+        $mergeRequest = $request->merge(['user_id' => $userID])
+            ->only(
+                'title',
+                'description',
+                'status',
+                'priority',
+                'deadline',
+                'user_id'
+            );
 
         $task = $this->task::create($mergeRequest);
 
@@ -98,9 +109,12 @@ class TasksController extends Controller
         if ($task === null) {
             return $this->errorResponse('Unable to perform deletion. The requested resource does not exist!', 404);
         }
-        //TODO!! SOFTDELETE
+
+        $task->status = TasksStatusEnum::CANCELED->value;
+        $task->save();
+
         $task->delete();
 
-        return $this->successResponse(null, 'Task deleted successfully');
+        return $this->successResponse([], 'Task deleted successfully');
     }
 }
