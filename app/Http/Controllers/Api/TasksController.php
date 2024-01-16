@@ -19,8 +19,6 @@ class TasksController extends Controller
     protected $task;
     protected $service;
 
-
-
     public function __construct(Task $task, TaskService $service)
     {
         $this->task = $task;
@@ -32,6 +30,7 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
+        //こんにちは世界
         $allowedFilters = TasksFiltersEnum::getValues();
 
         $filters = $request->only($allowedFilters);
