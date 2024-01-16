@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
-use App\Enums\TasksPriorityEnum;
 use App\Enums\TasksStatusEnum;
+use App\Enums\TasksPriorityEnum;
 use App\Traits\CreateUniqueSlug;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
+    use SoftDeletes;
     use CreateUniqueSlug;
     use HasFactory;
 
@@ -62,9 +65,9 @@ class Task extends Model
      *
      */
     protected $dates = [
-        'deadline',
-        'created_at',
-        'updated_at'
+        'deadline' => 'datetime Y-m-d H:i:s',
+        'created_at' => 'datetime Y-m-d H:i:s',
+        'updated_at' => 'datetime Y-m-d H:i:s'
     ];
 
 
@@ -93,7 +96,6 @@ class Task extends Model
         );
     }
 
-
     protected function priority(): Attribute
     {
         return Attribute::make(
@@ -103,6 +105,27 @@ class Task extends Model
         );
     }
 
+    public function getDeadlineAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('d/m/Y') : null;
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('d/m/Y') : null;
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('d/m/Y') : null;
+    }
+
+    public function getDeletedAtAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('d/m/Y') : null;
+    }
+
+    //***  RELATIONS  ***/
     public function user()
     {
         return $this->belongsTo(User::class);
