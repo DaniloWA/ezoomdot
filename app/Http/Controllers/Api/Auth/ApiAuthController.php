@@ -50,10 +50,15 @@ class ApiAuthController extends Controller
 
     public function logout(Request $request, PersonalAccessToken $personalAccessToken)
     {
-        $requestToken = $request->header('authorization');
-        $token = $personalAccessToken->findToken(str_replace('Bearer ', '', $requestToken));
+        $requestToken = $request->bearerToken();
+        $token = $personalAccessToken->findToken($requestToken);
+
+        if (!$token) {
+            return $this->errorResponse('Invalid token or the provided credentials are incorrect.', 401);
+        }
 
         $token->delete();
+
         return $this->successResponse([], 'Tokens Revoked');
     }
 
