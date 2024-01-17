@@ -1,0 +1,1915 @@
+{
+    "info": {
+        "_postman_id": "a5db1f2b-33e1-49ed-9048-1f4272452c7e",
+        "name": "api_ezoom_dev",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "26552979",
+        "_collection_link": "https://www.postman.com/altimetry-explorer-48713378/workspace/ezoomtcdev/collection/26552979-a5db1f2b-33e1-49ed-9048-1f4272452c7e?action=share&source=collection_link&creator=26552979"
+    },
+    "item": [
+        {
+            "name": "Api Auth",
+            "item": [
+                {
+                    "name": "API Register",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "var response = JSON.parse(responseBody);\r",
+                                    "\r",
+                                    "postman.setEnvironmentVariable('api_token', response.data.token);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"UserTeste\",\r\n    \"email\": \"User@gmail.com\",\r\n    \"password\": \"123123123\",\r\n    \"password_confirmation\": \"123123123\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/auth/register",
+                            "host": ["{{apiroute}}"],
+                            "path": [
+                                "api",
+                                "{{apiversion}}",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"name\": \"UserTeste\",\r\n    \"email\": \"User@gmail.com\",\r\n    \"password\": \"123123123\",\r\n    \"password_confirmation\": \"123123123\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/auth/register",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "auth", "register"]
+                                }
+                            },
+                            "status": "Created",
+                            "code": 201,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 06:58:56 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 06:58:56 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "58"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 201,\n    \"message\": \"User created!\",\n    \"data\": {\n        \"user\": {\n            \"name\": \"UserTeste\",\n            \"email\": \"User@gmail.com\",\n            \"uuid\": \"2016cca7-c155-48b4-bb2b-762f5838d4a5\",\n            \"updated_at\": \"2024-01-17T06:58:55.000000Z\",\n            \"created_at\": \"2024-01-17T06:58:55.000000Z\"\n        },\n        \"token\": \"5|yj7O2CKYYQnKC4Nw1rELW5vz0zzW3RBoChRTa1pYdcfb0c27\"\n    }\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"name\": \"UserTeste\",\r\n    \"email\": \"User@gmail.com\",\r\n    \"password\": \"123123123\",\r\n    \"password_confirmation\": \"123123123\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/auth/register",
+                                    "host": ["{{apiroute}}"],
+                                    "path": [
+                                        "api",
+                                        "{{apiversion}}",
+                                        "auth",
+                                        "register"
+                                    ]
+                                }
+                            },
+                            "status": "Unprocessable Content",
+                            "code": 422,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 06:59:36 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 06:59:36 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Someone already picked this [ EMAIL ] try another one!\",\n    \"errors\": {\n        \"email\": [\n            \"Someone already picked this [ EMAIL ] try another one!\"\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "API Login",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "var response = JSON.parse(responseBody);\r",
+                                    "\r",
+                                    "postman.setEnvironmentVariable('api_token', response.data.token);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"email\": \"User@gmail.com\",\r\n    \"password\": \"123123123\"\r\n}\r\n\r\n",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/auth/login",
+                            "host": ["{{apiroute}}"],
+                            "path": ["api", "{{apiversion}}", "auth", "login"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"email\": \"User@gmail.com\",\r\n    \"password\": \"123123123\"\r\n}\r\n\r\n",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/auth/login",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "auth", "login"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:00:16 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:00:16 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "59"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"User logged in!\",\n    \"data\": {\n        \"token\": \"6|WGIoh2rgaXMmHUE6eRsejrfAayNagVB21FrewxiSf9ae89ad\",\n        \"user\": {\n            \"uuid\": \"2016cca7-c155-48b4-bb2b-762f5838d4a5\",\n            \"name\": \"UserTeste\",\n            \"email\": \"User@gmail.com\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2024-01-17T06:58:55.000000Z\",\n            \"updated_at\": \"2024-01-17T06:58:55.000000Z\"\n        }\n    }\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"email\": \"ffUser@gmail.com\",\r\n    \"password\": \"123123123\"\r\n}\r\n\r\n",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/auth/login",
+                                    "host": ["{{apiroute}}"],
+                                    "path": [
+                                        "api",
+                                        "{{apiversion}}",
+                                        "auth",
+                                        "login"
+                                    ]
+                                }
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:00:48 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:00:48 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "56"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Error\",\n    \"status_code\": 401,\n    \"message\": \"The provided credentials are incorrect.\",\n    \"data\": []\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "API User",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{api_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/auth/user",
+                            "host": ["{{apiroute}}"],
+                            "path": ["api", "{{apiversion}}", "auth", "user"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer ",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/auth/user",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "auth", "user"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:03:29 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:03:29 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "59"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": null,\n    \"data\": {\n        \"uuid\": \"2016cca7-c155-48b4-bb2b-762f5838d4a5\",\n        \"name\": \"UserTeste\",\n        \"email\": \"User@gmail.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2024-01-17T06:58:55.000000Z\",\n        \"updated_at\": \"2024-01-17T06:58:55.000000Z\"\n    }\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{api_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/auth/user",
+                                    "host": ["{{apiroute}}"],
+                                    "path": [
+                                        "api",
+                                        "{{apiversion}}",
+                                        "auth",
+                                        "user"
+                                    ]
+                                }
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:02:17 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:02:17 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "0"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Error\",\n    \"status_code\": 401,\n    \"message\": \"Authentication failed: User is not authenticated.\",\n    \"data\": []\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "API Logout",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{api_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/auth/logout",
+                            "host": ["{{apiroute}}"],
+                            "path": ["api", "{{apiversion}}", "auth", "logout"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer ",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/auth/logout",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "auth", "logout"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:04:12 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:04:12 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "58"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Tokens Revoked\",\n    \"data\": []\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{api_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/auth/logout",
+                                    "host": ["{{apiroute}}"],
+                                    "path": [
+                                        "api",
+                                        "{{apiversion}}",
+                                        "auth",
+                                        "logout"
+                                    ]
+                                }
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:04:28 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:04:28 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "0"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Error\",\n    \"status_code\": 401,\n    \"message\": \"Authentication failed: User is not authenticated.\",\n    \"data\": []\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Tasks",
+            "item": [
+                {
+                    "name": "Tasks - Store",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "    try {\r",
+                                    "        var responseData = pm.response.json() ;\r",
+                                    "\r",
+                                    "        if (responseData && responseData.data && responseData.data.uuid) {\r",
+                                    "\r",
+                                    "            postman.setEnvironmentVariable(\"task_uuid\", responseData.data.uuid);\r",
+                                    "        } else {\r",
+                                    "            console.log(\"The response body does not contain 'data.uuid'\");\r",
+                                    "        }\r",
+                                    "    } catch (error) {\r",
+                                    "        console.error(\"Error parsing the JSON body of the response:\", error);\r",
+                                    "    }\r",
+                                    ""
+                                ],
+                                "type": "text/javascript"
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": ["\r", ""],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{api_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"title\": \"Refactor database schema\",\r\n    \"description\": \"Update the database schema to accommodate new changes in the application models.\",\r\n    \"status\": \"pending\",\r\n    \"priority\": \"medium\",\r\n    \"deadline\": \"15-05-2025\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/tasks",
+                            "host": ["{{apiroute}}"],
+                            "path": ["api", "{{apiversion}}", "tasks"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer ",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"title\": \"Refactor database schema\",\r\n    \"description\": \"Update the database schema to accommodate new changes in the application models.\",\r\n    \"status\": \"pending\",\r\n    \"priority\": \"medium\",\r\n    \"deadline\": \"15-05-2025\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/tasks",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "tasks"]
+                                }
+                            },
+                            "status": "Created",
+                            "code": 201,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:19:17 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:19:17 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "59"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 201,\n    \"message\": \"Task created successfully\",\n    \"data\": {\n        \"title\": \"Refactor database schema\",\n        \"description\": \"Update the database schema to accommodate new changes in the application models.\",\n        \"status\": \"pending\",\n        \"priority\": \"medium\",\n        \"deadline\": \"15/05/2025\",\n        \"uuid\": \"27e8a456-7ecf-4f12-bcb0-57900298d1ae\",\n        \"slug\": \"refactor-database-schema-1\",\n        \"updated_at\": \"17/01/2024\",\n        \"created_at\": \"17/01/2024\"\n    }\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{api_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"title\": \"\",\r\n    \"description\": \"Update the database schema to accommodate new changes in the application models.\",\r\n    \"status\": \"pending\",\r\n    \"priority\": \"s\",\r\n    \"deadline\": \"2023-05-15\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/tasks",
+                                    "host": ["{{apiroute}}"],
+                                    "path": ["api", "{{apiversion}}", "tasks"]
+                                }
+                            },
+                            "status": "Unprocessable Content",
+                            "code": 422,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:05:51 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:05:51 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"We need your [ TITLE ] to continue! (and 2 more errors)\",\n    \"errors\": {\n        \"title\": [\n            \"We need your [ TITLE ] to continue!\"\n        ],\n        \"priority\": [\n            \"The selected priority is invalid.\"\n        ],\n        \"deadline\": [\n            \"The deadline field must be a date after or equal to today.\"\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Tasks - Index",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{api_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": []
+                        },
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/tasks?per_page=10&page=1&status=completed",
+                            "host": ["{{apiroute}}"],
+                            "path": ["api", "{{apiversion}}", "tasks"],
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "completed"
+                                },
+                                {
+                                    "key": "priority",
+                                    "value": "high",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "user",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "deadline_start",
+                                    "value": "2023-01-15",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "deadline_end",
+                                    "value": "2023-01-20",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer ",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "urlencoded",
+                                    "urlencoded": []
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/tasks?per_page=10&page=1&status=completed",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "tasks"],
+                                    "query": [
+                                        {
+                                            "key": "per_page",
+                                            "value": "10"
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "key": "status",
+                                            "value": "completed"
+                                        },
+                                        {
+                                            "key": "priority",
+                                            "value": "high",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "user",
+                                            "value": "1",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "deadline_start",
+                                            "value": "2023-01-15",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "deadline_end",
+                                            "value": "2023-01-20",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:19:54 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:19:54 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "58"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Tasks retrieved successfully\",\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"uuid\": \"a6628e95-55dd-4d6e-ad6c-7b21558d89be\",\n                \"title\": \"In dolores quisquam assumenda totam.\",\n                \"slug\": \"in-dolores-quisquam-assumenda-totam\",\n                \"description\": \"Perferendis rem eaque minus nisi. Illum aspernatur adipisci consequatur ut blanditiis non et iure. Soluta nulla alias ea fugiat velit possimus voluptas.\",\n                \"status\": \"completed\",\n                \"priority\": \"high\",\n                \"deadline\": \"19/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            },\n            {\n                \"uuid\": \"72ecb6f7-8371-41d1-92ce-425fe721e127\",\n                \"title\": \"Temporibus dolorem excepturi odit illo consequatur qui.\",\n                \"slug\": \"temporibus-dolorem-excepturi-odit-illo-consequatur-qui\",\n                \"description\": \"Soluta esse accusamus quas quo ea voluptas. Temporibus sunt porro cumque pariatur voluptatem aut corrupti. Adipisci inventore aliquid maiores labore et et consequatur.\",\n                \"status\": \"completed\",\n                \"priority\": \"medium\",\n                \"deadline\": \"19/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            },\n            {\n                \"uuid\": \"b4847750-e743-43ff-ab49-8cc73d527101\",\n                \"title\": \"Natus unde omnis non ut dolores.\",\n                \"slug\": \"natus-unde-omnis-non-ut-dolores\",\n                \"description\": \"Qui sit omnis veniam illum labore quibusdam. Quidem ut et impedit consectetur vero. Eum voluptatem et ea autem. Ipsam porro ducimus soluta voluptatum enim autem.\",\n                \"status\": \"completed\",\n                \"priority\": \"critical\",\n                \"deadline\": \"21/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            },\n            {\n                \"uuid\": \"647be9f6-ecf2-482f-8eb0-b4388cee84b8\",\n                \"title\": \"Sapiente maiores cumque laborum.\",\n                \"slug\": \"sapiente-maiores-cumque-laborum\",\n                \"description\": \"Ab odit eligendi veniam voluptatem qui. Deleniti eos blanditiis quas mollitia dolorem eum nostrum perspiciatis. Vitae ut eum sed.\",\n                \"status\": \"completed\",\n                \"priority\": \"low\",\n                \"deadline\": \"18/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            },\n            {\n                \"uuid\": \"bb39c89b-bc90-4891-85a4-2aaebab764fc\",\n                \"title\": \"Dolorem ut nemo soluta voluptatem tempore maiores dolorum.\",\n                \"slug\": \"dolorem-ut-nemo-soluta-voluptatem-tempore-maiores-dolorum\",\n                \"description\": \"Dolorum perspiciatis ea officiis. Commodi velit illo inventore minus eos. Et quisquam quas dolorum voluptas maxime sed explicabo id.\",\n                \"status\": \"completed\",\n                \"priority\": \"high\",\n                \"deadline\": \"20/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            },\n            {\n                \"uuid\": \"f53cf0ec-a146-410a-afa2-f2c95dcaf5f3\",\n                \"title\": \"Et et qui aperiam quia deserunt ratione consectetur tempora.\",\n                \"slug\": \"et-et-qui-aperiam-quia-deserunt-ratione-consectetur-tempora\",\n                \"description\": \"Alias quas voluptas eum esse ut. Illum repellendus dolore sint sequi. Quisquam quia consequatur quaerat ut ipsum. Nam ea eligendi in molestiae iste.\",\n                \"status\": \"completed\",\n                \"priority\": \"high\",\n                \"deadline\": \"20/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            },\n            {\n                \"uuid\": \"552758a1-cd82-426c-8d5e-09dbd5e7e4c7\",\n                \"title\": \"Ut ad distinctio minima veniam.\",\n                \"slug\": \"ut-ad-distinctio-minima-veniam\",\n                \"description\": \"Nihil voluptas omnis vitae quibusdam atque odit. Veniam omnis voluptates ab explicabo delectus animi officiis omnis. Quia hic id possimus odio voluptatibus. Praesentium deserunt ut nam odio quibusdam ut qui neque.\",\n                \"status\": \"completed\",\n                \"priority\": \"low\",\n                \"deadline\": \"21/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            },\n            {\n                \"uuid\": \"6ed144d6-4c1c-4860-9071-e1659db2be82\",\n                \"title\": \"Officiis molestias consectetur aut modi.\",\n                \"slug\": \"officiis-molestias-consectetur-aut-modi\",\n                \"description\": \"Non ea quos est exercitationem incidunt. Fugit quam odio omnis. Voluptates unde dicta repudiandae sit asperiores et et sit.\",\n                \"status\": \"completed\",\n                \"priority\": \"critical\",\n                \"deadline\": \"21/01/2024\",\n                \"created_at\": \"16/01/2024\",\n                \"updated_at\": \"16/01/2024\",\n                \"deleted_at\": null\n            }\n        ],\n        \"first_page_url\": \"http://localhost:8000/api/v1/tasks?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://localhost:8000/api/v1/tasks?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost:8000/api/v1/tasks?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://localhost:8000/api/v1/tasks\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 8,\n        \"total\": 8\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Tasks - Show",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [""],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{api_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/tasks/{{task_uuid}}",
+                            "host": ["{{apiroute}}"],
+                            "path": [
+                                "api",
+                                "{{apiversion}}",
+                                "tasks",
+                                "{{task_uuid}}"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer ",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/tasks/",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "tasks", ""]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:21:37 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:21:37 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "59"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Task retrieved successfully\",\n    \"data\": {\n        \"uuid\": \"27e8a456-7ecf-4f12-bcb0-57900298d1ae\",\n        \"title\": \"Refactor database schema\",\n        \"slug\": \"refactor-database-schema-1\",\n        \"description\": \"Update the database schema to accommodate new changes in the application models.\",\n        \"status\": \"pending\",\n        \"priority\": \"medium\",\n        \"deadline\": \"15/05/2025\",\n        \"created_at\": \"17/01/2024\",\n        \"updated_at\": \"17/01/2024\",\n        \"deleted_at\": null,\n        \"user\": {\n            \"uuid\": \"2016cca7-c155-48b4-bb2b-762f5838d4a5\",\n            \"name\": \"UserTeste\",\n            \"email\": \"User@gmail.com\"\n        }\n    }\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{api_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/tasks/{{task_uuid}}",
+                                    "host": ["{{apiroute}}"],
+                                    "path": [
+                                        "api",
+                                        "{{apiversion}}",
+                                        "tasks",
+                                        "{{task_uuid}}"
+                                    ]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:20:32 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:20:32 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "59"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Error\",\n    \"status_code\": 404,\n    \"message\": \"The searched resource does not exist\",\n    \"data\": []\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Tasks - Put",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{api_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"title\": \"Implement new feature\",\r\n    \"description\": \"Develop the new user authentication feature.\",\r\n    \"status\": \"pending\",\r\n    \"priority\": \"high\",\r\n    \"deadline\": \"2025-04-30\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/tasks/{{task_uuid}}",
+                            "host": ["{{apiroute}}"],
+                            "path": [
+                                "api",
+                                "{{apiversion}}",
+                                "tasks",
+                                "{{task_uuid}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "",
+                                    "value": null,
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer ",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"title\": \"Implement new feature\",\r\n    \"description\": \"Develop the new user authentication feature.\",\r\n    \"status\": \"pending\",\r\n    \"priority\": \"high\",\r\n    \"deadline\": \"2025-04-30\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/tasks/",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "tasks", ""],
+                                    "query": [
+                                        {
+                                            "key": "",
+                                            "value": null,
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:23:00 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:23:00 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "59"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Task updated successfully\",\n    \"data\": {\n        \"uuid\": \"27e8a456-7ecf-4f12-bcb0-57900298d1ae\",\n        \"title\": \"Implement new feature\",\n        \"slug\": \"implement-new-feature\",\n        \"description\": \"Develop the new user authentication feature.\",\n        \"status\": \"pending\",\n        \"priority\": \"high\",\n        \"deadline\": \"30/04/2025\",\n        \"created_at\": \"17/01/2024\",\n        \"updated_at\": \"17/01/2024\",\n        \"deleted_at\": null\n    }\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{api_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"title\": \"\",\r\n    \"description\": \"Develop the new user authentication feature.\",\r\n    \"status\": \"pendinhg\",\r\n    \"priority\": \"\",\r\n    \"deadline\": \"2023-04-30\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/tasks/{{task_uuid}}",
+                                    "host": ["{{apiroute}}"],
+                                    "path": [
+                                        "api",
+                                        "{{apiversion}}",
+                                        "tasks",
+                                        "{{task_uuid}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "",
+                                            "value": null,
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Unprocessable Content",
+                            "code": 422,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:22:29 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:22:29 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"We need your [ TITLE ] to continue! (and 3 more errors)\",\n    \"errors\": {\n        \"title\": [\n            \"We need your [ TITLE ] to continue!\"\n        ],\n        \"status\": [\n            \"The selected status is invalid.\"\n        ],\n        \"priority\": [\n            \"We need your [ PRIORITY ] to continue!\"\n        ],\n        \"deadline\": [\n            \"The deadline field must be a date after or equal to today.\"\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Tasks - Delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{api_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{apiroute}}/api/{{apiversion}}/tasks/{{task_uuid}}",
+                            "host": ["{{apiroute}}"],
+                            "path": [
+                                "api",
+                                "{{apiversion}}",
+                                "tasks",
+                                "{{task_uuid}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "",
+                                    "value": null,
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer ",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "http://localhost:8000/api/v1/tasks/",
+                                    "protocol": "http",
+                                    "host": ["localhost"],
+                                    "port": "8000",
+                                    "path": ["api", "v1", "tasks", ""],
+                                    "query": [
+                                        {
+                                            "key": "",
+                                            "value": null,
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:23:28 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:23:28 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "58"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Task deleted successfully\",\n    \"data\": []\n}"
+                        },
+                        {
+                            "name": "Errors",
+                            "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{api_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{apiroute}}/api/{{apiversion}}/tasks/{{task_uuid}}",
+                                    "host": ["{{apiroute}}"],
+                                    "path": [
+                                        "api",
+                                        "{{apiversion}}",
+                                        "tasks",
+                                        "{{task_uuid}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "",
+                                            "value": null,
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Host",
+                                    "value": "localhost:8000"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:23:59 GMT"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 17 Jan 2024 07:23:59 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "close"
+                                },
+                                {
+                                    "key": "X-Powered-By",
+                                    "value": "PHP/8.2.10"
+                                },
+                                {
+                                    "key": "Cache-Control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Methods",
+                                    "value": "GET, POST, PUT, DELETE"
+                                },
+                                {
+                                    "key": "X-User-Authenticated",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "X-RateLimit-Limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "X-RateLimit-Remaining",
+                                    "value": "60"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"status\": \"Error\",\n    \"status_code\": 404,\n    \"message\": \"Unable to perform deletion. The requested resource does not exist!\",\n    \"data\": []\n}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ]
+}
