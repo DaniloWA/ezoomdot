@@ -32,7 +32,7 @@ class TaskUpdateRequest extends FormRequest
             'description' => 'nullable|string',
             'status' => ['required', Rule::in(TasksStatusEnum::cases())],
             'priority' => ['required', Rule::in(TasksPriorityEnum::cases())],
-            'deadline' => 'nullable|date',
+            'deadline' => 'nullable|date|after_or_equal:today',
         ];
     }
 

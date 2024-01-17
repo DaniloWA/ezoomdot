@@ -8,7 +8,8 @@ use App\Services\TaskService;
 use App\Enums\TasksStatusEnum;
 use App\Enums\TasksFiltersEnum;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\Api\TasksController as ApiTasksController;
+use App\Http\Requests\TaskStoreRequest;
+use App\Http\Requests\TaskUpdateRequest;
 use App\Models\User;
 
 class TasksController extends Controller
@@ -31,9 +32,29 @@ class TasksController extends Controller
         return view('tasks', ['tasks' => $tasks, 'users' => $this->getUsers()]);
     }
 
-    public function store(Request $request)
+    public function store(TaskStoreRequest $request)
     {
-        return view('tasks');
+        $this->taskService->createTask($request->validated());
+
+        return Redirect::route('tasks.index')->with('success', 'Task created successfully');
+    }
+
+    public function update(TaskUpdateRequest $request)
+    {
+        $task = Task::where('uuid', $request->input('uuid'))->first();
+
+        if ($task === null) {
+            return Redirect::route('task.show')->with('error', 'The requested resource does not exist!');
+        }
+
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->status = $request->input('status');
+        $task->priority = $request->input('priority');
+        $task->deadline = $request->input('deadline');
+        $task->save();
+
+        return Redirect::route('tasks.index')->with('success', 'Task updated successfully');
     }
 
     public function show(string $uuid)

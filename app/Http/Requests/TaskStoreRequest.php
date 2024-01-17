@@ -6,6 +6,7 @@ use App\Enums\TasksStatusEnum;
 use App\Traits\DefaultMessages;
 use Illuminate\Validation\Rule;
 use App\Enums\TasksPriorityEnum;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TaskStoreRequest extends FormRequest
@@ -20,6 +21,20 @@ class TaskStoreRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        $deadline = $this->input('deadline');
+
+        if ($deadline) {
+            $formattedDeadline = Carbon::parse($deadline)->startOfDay();
+
+            $this->merge(['deadline' => $formattedDeadline ? $formattedDeadline->format('d-m-Y')  : null]);
+        }
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -31,7 +46,7 @@ class TaskStoreRequest extends FormRequest
             'description' => 'nullable|string',
             'status' => ['required', Rule::in(TasksStatusEnum::cases())],
             'priority' => ['required', Rule::in(TasksPriorityEnum::cases())],
-            'deadline' => 'nullable|date',
+            'deadline' => 'date|after_or_equal:today|date_format:d-m-Y',
         ];
     }
 

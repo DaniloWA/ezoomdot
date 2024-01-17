@@ -23,7 +23,7 @@ class CreateTasksTable extends Migration
                 ->default('pending');
             $table->enum('priority', ['low', 'medium', 'high', 'critical'])
                 ->default('low');
-            $table->timestamp('deadline')
+            $table->dateTime('deadline')
                 ->default(now()->addDays(5))
                 ->comment('The date and time by which the task should be completed. Default is 5 days from now.');
 

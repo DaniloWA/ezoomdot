@@ -63,6 +63,16 @@ class TaskService
         return $users ?? [];
     }
 
+    public function createTask(array $data)
+    {
+        $data['deadline'] = Carbon::createFromFormat('d-m-Y', $data['deadline'])->format('Y-m-d');
+
+        $data['user_id'] = auth()->user()->id;
+
+        $task = $this->task->create($data);
+
+        return $task;
+    }
 
     /**
      * Retrieves a paginated list of tasks based on specified filters.
