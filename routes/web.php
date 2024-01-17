@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/tasks/store', [TasksController::class, 'store'])->name('task.store');
     Route::get('/tasks/{task}', [TasksController::class, 'show'])->name('task.show');
     Route::get('/tasks/users', [TasksController::class, 'getUsers'])->name('tasks.users');
-    Route::patch('/tasks', [TasksController::class, 'update'])->name('tasks.update');
+    Route::patch('/tasks', [TasksController::class, 'update'])->name('task.update');
     Route::delete('/tasks/{uuid}', [TasksController::class, 'destroy'])->name('tasks.destroy');
 });
 
