@@ -2,24 +2,24 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
             {{ __('Tasks List') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <form method="GET" action="{{ route('tasks.index') }}" class="mb-4">
                         @csrf
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             <div class="mb-4">
                                 <label for="user" class="block text-sm font-medium text-gray-400">User:</label>
                                 <select name="user" id="user"
-                                    class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white">
+                                    class="w-full p-2 mt-1 border rounded dark:bg-gray-700 dark:text-white">
                                     <option value="">Select User</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->uuid }}"
@@ -33,7 +33,7 @@
                             <div class="mb-4">
                                 <label for="status" class="block text-sm font-medium text-gray-400">Status:</label>
                                 <select name="status" id="status"
-                                    class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white">
+                                    class="w-full p-2 mt-1 border rounded dark:bg-gray-700 dark:text-white">
                                     <option value="">Select Status</option>
                                     @foreach (\App\Enums\TasksStatusEnum::cases() as $status)
                                         <option value="{{ $status->value }}"
@@ -47,7 +47,7 @@
                             <div class="mb-4">
                                 <label for="priority" class="block text-sm font-medium text-gray-400">Priority:</label>
                                 <select name="priority" id="priority"
-                                    class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white">
+                                    class="w-full p-2 mt-1 border rounded dark:bg-gray-700 dark:text-white">
                                     <option value="">Select Priority</option>
                                     @foreach (\App\Enums\TasksPriorityEnum::cases() as $priority)
                                         <option value="{{ $priority->value }}"
@@ -60,10 +60,9 @@
                             </div>
 
                             <div class="mb-4">
-                                <label for="per_page" class="block text-sm font-medium text-gray-400">Items por
-                                    página:</label>
+                                <label for="per_page" class="block text-sm font-medium text-gray-400">Per Page:</label>
                                 <select name="per_page" id="per_page"
-                                    class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white">
+                                    class="w-full p-2 mt-1 border rounded dark:bg-gray-700 dark:text-white">
                                     <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
                                     <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10
                                     </option>
@@ -77,7 +76,7 @@
                                     Start:</label>
                                 <input type="date" name="deadline_start" id="deadline_start"
                                     value="{{ request('deadline_start') }}"
-                                    class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white">
+                                    class="w-full p-2 mt-1 border rounded dark:bg-gray-700 dark:text-white">
                             </div>
 
                             <div class="mb-4">
@@ -85,34 +84,38 @@
                                     End:</label>
                                 <input type="date" name="deadline_end" id="deadline_end"
                                     value="{{ request('deadline_end') }}"
-                                    class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white">
+                                    class="w-full p-2 mt-1 border rounded dark:bg-gray-700 dark:text-white">
                             </div>
 
 
                             <div class="mb-4 col-span-full max-h-[100px] overflow-y-auto">
                                 <button type="submit"
-                                    class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded ">
+                                    class="px-4 py-2 font-bold text-white bg-blue-700 rounded hover:bg-blue-900 ">
                                     Apply Filters
                                 </button>
 
                                 <button type="button" onclick="resetFilters()"
-                                    class="ml-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-bold py-2 px-4 rounded">
+                                    class="px-4 py-2 ml-2 font-bold text-gray-800 bg-gray-300 rounded dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-200">
                                     Reset Filters
                                 </button>
                             </div>
-
+                            @if (session('success'))
+                                <div id="success-message" class="p-4 mb-4 text-white bg-green-500">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                         </div>
                     </form>
                     <hr>
                     @if ($tasks->count() > 0)
                         <ul>
                             @foreach ($tasks as $task)
-                                <li class="border-b border-gray-300 p-4">
-                                    <div class="text-gray-400 text-sm">
+                                <li class="p-4 border-b border-gray-300">
+                                    <div class="text-sm text-gray-400">
                                         <strong class="text-gray-300">User:</strong> {{ $task->user->name }}
                                     </div>
-                                    <h3 class="text-xl text-gray-200 font-semibold mb-2">{{ $task->title }}</h3>
-                                    <p class="text-gray-300 mb-4">{{ $task->description }}</p>
+                                    <h3 class="mb-2 text-xl font-semibold text-gray-200">{{ $task->title }}</h3>
+                                    <p class="mb-4 text-gray-300">{{ $task->description }}</p>
                                     <div class="flex mt-2 text-sm text-gray-400">
                                         <span class="mr-4">
                                             <strong class="text-gray-300">Status:</strong> {{ $task->status }}
@@ -126,16 +129,19 @@
                                     </div>
 
                                     <div class="flex mt-2 text-sm">
-                                        <a href="{{ route('tasks.update', $task->uuid) }}"
-                                            class="bg-green-600 hover:bg-green-800 text-white font-bold py-1 px-4 rounded mr-3">
-                                            Edit
-                                        </a>
+                                        <form action="{{ route('task.show', $task->uuid) }}" method="GET">
+                                            @csrf
+                                            <button type="submit"
+                                                class="px-4 py-1 mr-3 font-bold text-white bg-green-600 rounded hover:bg-green-800">
+                                                Edit
+                                            </button>
+                                        </form>
                                         <form class="deleteForm" action="{{ route('tasks.destroy', $task->uuid) }}"
                                             method="POST" data-task-id="{{ $task->uuid }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-4 rounded mr-3 delete-button">
+                                                class="px-4 py-1 mr-3 font-bold text-white bg-red-600 rounded hover:bg-red-800 delete-button">
                                                 <span>Delete</span>
                                             </button>
                                         </form>
@@ -170,6 +176,15 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(function() {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 5000);
+            });
+        </script>
+    @endif
     <script>
         document.querySelectorAll('.delete-button').forEach(button => {
             button.addEventListener('click', function(event) {
@@ -184,6 +199,18 @@
                     form.submit();
                 }
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+
+            if (successMessage) {
+                successMessage.style.display = 'block';
+
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
         });
 
         function resetFilters() {
