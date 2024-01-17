@@ -10,6 +10,7 @@ use App\Http\Requests\TaskUpdateRequest;
 use App\Models\Task;
 use App\Services\TaskService;
 use App\Traits\ApiResponser;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -60,6 +61,8 @@ class TasksController extends Controller
                 'deadline',
                 'user_id'
             );
+
+        $mergeRequest['deadline'] = Carbon::createFromFormat('d-m-Y', $mergeRequest['deadline'])->format('Y-m-d');
 
         $task = $this->task::create($mergeRequest);
 
