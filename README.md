@@ -176,6 +176,16 @@ DB_PASSWORD=admin123
   ./vendor/bin/pest
 ```
 
+### Iniciar Porjeto
+
+```bash
+  php artisan serve
+```
+
+```bash
+  npm run dev
+```
+
 <br>
 
 [Início](#principais-recursos)
